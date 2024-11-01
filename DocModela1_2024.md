@@ -30,6 +30,7 @@ La cantidad de productos por camión varía según el horario. El sistema monito
   - En las propiedades del Source, cambia *Arrival Mode* a *Time Varying Arrival Rate*.
   - En *Rate Table*, selecciona la tabla creada en el paso anterior.
 - Define los intervalos de tiempo y la tasa de llegada en la **Rate Table**.
+![Configuracion de Llegadas](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/congSourceInicial.jpg)
 
 ## Proceso para Asignar Valor a los Productos
 1. Abre la pestaña de **Procesos** en Simio y selecciona *Add Process*.
@@ -78,31 +79,65 @@ Productos almacenados se consolidan para despacho. Si un pedido incluye producto
 - **Empaque Mixto**: para pedidos de múltiples categorías. Tiempo de consolidación: 10-25 minutos.
 
 ![Modulo 1 2 3 en 2D](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/modulo123_2D.jpg)
-![Modulo 1 2 3 en 3D](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/modulo123_3D.jpg)
+![Modulo 1 2 3 en 3D](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/Modulo123_3D.jpg)
 
 ---
 
 # Módulo 4: Despacho de Pedidos
 
 ## Descripción del Proceso
-Los pedidos se despachan hacia sus zonas de destino. La eficiencia en el despacho es crucial y depende de la prioridad, capacidad de camiones y tiempos de viaje.
+En este módulo, los pedidos son organizados y despachados desde el centro logístico hacia sus respectivas zonas de destino. La eficiencia en el despacho es crucial, ya que se deben considerar factores como la prioridad de las entregas, la capacidad de los camiones y los tiempos de despacho, que varían según la distancia y la urgencia de la entrega.
 
 ## Llegada de Pedidos y Despacho
+Los pedidos llegan de forma variable a lo largo del día. Para gestionar esto, se utilizó una rate table que permite definir la llegada programada de pedidos en cada intervalo horario. 
 ![Tabla de Tiempos de Despacho](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/rateTAble2.jpg)
 
-- **Probabilidad de Llegada por Zona**:
-  - Zona Norte: 40%
-  - Zona Sur: 35%
-  - Zona Oeste: 25%
-- **Tiempos de Entrega por Zona**:
-  - Zona Norte: 1-1.5 horas.
-  - Zona Sur: 1.5-2 horas.
-  - Zona Oeste: 2-2.5 horas.
-  
+- ## Probabilidad de Llegada de Pedidos por Zona
+
+La llegada de pedidos al sistema está distribuida de la siguiente manera:
+
+- **Zona Norte**: 40%
+- **Zona Sur**: 35%
+- **Zona Oeste**: 25% (restante)
+
+Esta distribución permite modelar adecuadamente la demanda por zona, reflejando las características específicas de cada una.
+
+## Despacho por Zonas
+
+Para el despacho de pedidos, se emplean servidores que operan bajo una **distribución uniforme aleatoria**, simulando la variabilidad en el tiempo de despacho para cada zona. Esto mejora la precisión del modelo al representar tiempos de despacho realistas.
+![Despacho 2d](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/rateTAble2.jpg)
+![Despacho 3d](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/rateTAble2.jpg)
+![config server](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/rateTAble2.jpg)
+
+## Cantidad de Camiones Disponibles
+
+**LogiExpress** dispone de **12 camiones** modelados como vehículos en Simio. Estos camiones están en una lista de transporte configurada en el modelo para garantizar una gestión adecuada de la flota. En el **nodo de transferencia** del origen (source), solo se permite el paso de vehículos, controlando así el flujo de productos.
+![lista camiones](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/listadoVehiculo.jpg)
+![estacionamiento camiones](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/camiones_estacionados.jpg)
+
+## Tiempo Total de Entrega por Camión
+
+El tiempo estimado de entrega por camión depende de la zona de destino e incluye todas las etapas del proceso de entrega:
+
+- **Zona Norte**: 1 - 1.5 horas (ida y vuelta)
+- **Zona Sur**: 1.5 - 2 horas
+- **Zona Oeste**: 2 - 2.5 horas
+
+Estos tiempos abarcan el proceso completo: desde la carga del pedido, el viaje al destino, la descarga en el cliente, hasta el retorno al centro de distribución. Se configuró un **time path en Simio** utilizando una **distribución uniforme aleatoria** con los valores de la tabla, lo cual permite simular la variabilidad en el despacho y aumentar la precisión del modelo.
+
+![timeoatht configuracion](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/configpath.png)
+## Carga de Pedidos y Disparadores de Eventos
+
+Para gestionar la carga de camiones de manera eficiente, se implementaron **tres procesos con disparadores de eventos en Simio**. Cada proceso responde a un nuevo pedido en una zona específica, activando eventos que asignan camiones a la zona correspondiente, mejorando la capacidad de respuesta del sistema.
+![Eventos](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/Eventos.jpg)
+![Proceso Evento](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/procesosDisp.jpg)
+  ![Source Entrega](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/rateTAble2.jpg)
+  ![entrega 2d](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/moduloEntrega_2D.jpg)
+  ![Entrega 3D](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/ModeloEntrega_3D.jpg)
 ## Carga de Pedidos y Horario de Trabajo
 - LogiExpress opera de lunes a viernes de 7:00 AM a 7:00 PM, sábados de 9:00 AM a 4:00 PM. Pausa de almuerzo: lunes a viernes de 12:00 PM a 1:00 PM, sábados de 12:00 PM a 12:30 PM. Cerrado los domingos.
 
-![Horario de Trabajo](URL_de_la_imagen/HorarioTrabajo.png)
+
 
 ---
 
