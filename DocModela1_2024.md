@@ -105,9 +105,9 @@ Esta distribución permite modelar adecuadamente la demanda por zona, reflejando
 ## Despacho por Zonas
 
 Para el despacho de pedidos, se emplean servidores que operan bajo una **distribución uniforme aleatoria**, simulando la variabilidad en el tiempo de despacho para cada zona. Esto mejora la precisión del modelo al representar tiempos de despacho realistas.
-![Despacho 2d](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/rateTAble2.jpg)
-![Despacho 3d](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/rateTAble2.jpg)
-![config server](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/rateTAble2.jpg)
+![Despacho 2d](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/despacho_2D.png)
+![Despacho 3d](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/despacho_3D.jpg)
+![config server](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/despacho_serverConfig.jpg)
 
 ## Cantidad de Camiones Disponibles
 
