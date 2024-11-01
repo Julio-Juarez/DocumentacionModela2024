@@ -34,7 +34,9 @@ La cantidad de productos por camión varía según el horario. El sistema monito
 ## Proceso para Asignar Valor a los Productos
 1. Abre la pestaña de **Procesos** en Simio y selecciona *Add Process*.
 
-   ![Configuración del Proceso](URL_de_la_imagen/ProcesoConfig.png)
+![variables de Productos](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/variablesProductos.jpg)
+  
+   ![Configuración del Proceso](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/ProcesoAsignacionCantidad.jpg)
 
 2. Configura el **Trigger** del proceso para que se ejecute en intervalos específicos.
 3. Añade un objeto **Decide** con la condición `DateTime.Hour(TimeNow) = hora` para verificar la hora.
@@ -43,7 +45,7 @@ La cantidad de productos por camión varía según el horario. El sistema monito
 ## Separadores
 - Coloca tres objetos **Separator** en el área de clasificación para los tres flujos: perecederos, electrónicos y voluminosos.
   
-  ![Configuración de Separadores](URL_de_la_imagen/SeparadoresConfig.png)
+  ![Configuración de Separadores](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/configuracionSeparadores.jpg)
   
 - Configura las condiciones para cada separador con las variables correspondientes (`cantidadPerecederos`, `cantidadElectronicos`, `cantidadVoluminosos`).
 
@@ -54,7 +56,6 @@ La cantidad de productos por camión varía según el horario. El sistema monito
 ## Descripción del Proceso
 Los productos clasificados son almacenados temporalmente en áreas específicas según su tipo (perecederos, electrónicos, voluminosos). Cada área tiene una capacidad en metros cúbicos y tiempos de procesamiento distintos.
 
-![Capacidad de Almacenamiento](URL_de_la_imagen/AlmacenamientoConfig.png)
 
 ## Manejo y Procesamiento por Tipo
 - **Perecederos**: 300 m³, tiempo de procesamiento 10-15 minutos.
@@ -76,7 +77,8 @@ Productos almacenados se consolidan para despacho. Si un pedido incluye producto
 ## Tipo de Empaque y Tiempos
 - **Empaque Mixto**: para pedidos de múltiples categorías. Tiempo de consolidación: 10-25 minutos.
 
-![Configuración de Empaque](URL_de_la_imagen/EmpaqueConfig.png)
+![Modulo 1 2 3 en 2D](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/modulo123_2D.jpg)
+![Modulo 1 2 3 en 3D](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/modulo123_3D.jpg)
 
 ---
 
@@ -86,7 +88,7 @@ Productos almacenados se consolidan para despacho. Si un pedido incluye producto
 Los pedidos se despachan hacia sus zonas de destino. La eficiencia en el despacho es crucial y depende de la prioridad, capacidad de camiones y tiempos de viaje.
 
 ## Llegada de Pedidos y Despacho
-![Tabla de Tiempos de Despacho](URL_de_la_imagen/DespachoConfig.png)
+![Tabla de Tiempos de Despacho](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/rateTAble2.jpg)
 
 - **Probabilidad de Llegada por Zona**:
   - Zona Norte: 40%
@@ -116,4 +118,4 @@ Aunque el personal de empaque y despacho no está operativo durante las pausas, 
 ## Simulación de Actividades
 Es esencial que el modelo refleje los períodos de actividad e inactividad para una gestión eficiente de los recursos y una planificación adecuada de turnos, maximizando la eficacia operativa del centro de distribución.
 
-![Gestión de Pausas y Tiempos de Actividad](URL_de_la_imagen/ActividadConfig.png)
+![Gestión de Pausas y Tiempos de Actividad](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/horario.jpg)
