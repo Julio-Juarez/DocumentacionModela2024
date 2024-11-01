@@ -21,7 +21,7 @@ Este módulo gestiona la llegada, descarga y clasificación de productos en el c
 ## Detalles de Implementación
 Los camiones llegan al centro en intervalos específicos, detallados en la tabla de horarios de llegada.
 
-![Configuración de la Rate Table](URL_de_la_imagen/RateTableConfig.png)
+![Configuración de la Rate Table](https://github.com/Julio-Juarez/DocumentacionModela2024/blob/main/Imagen/rateTable1.jpg)
 
 La cantidad de productos por camión varía según el horario. El sistema monitorea en tiempo real el flujo de productos y ajusta las rutas de los AGVs y los separadores para responder a cambios en la demanda.
 
